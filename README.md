@@ -1,6 +1,6 @@
 ![](https://img.shields.io/github/watchers/9xw/discord-mass-ban?style=social) ![](https://img.shields.io/github/stars/9xw/discord-mass-ban?style=social) ![](https://img.shields.io/github/forks/9xw/discord-mass-ban?style=social)
 
-# Discord mass ban
+# Discord massban
 A discord mass ban tool that can be used by a user or bot token to completely wipe out a server with the required permissions.
 
 ![](https://media.discordapp.net/attachments/631162287968747550/831325322817306664/unknown.png)
