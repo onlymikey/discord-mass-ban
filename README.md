@@ -10,3 +10,4 @@ The script is very buggy and not finished but still gets the job done. Will be u
 
 ---
 ###### This project here has been made for educational purposes only. I do not control the misconduct of my tool. I do not promote the usage of my tool.
+---
