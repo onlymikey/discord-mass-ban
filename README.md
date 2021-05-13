@@ -6,7 +6,7 @@ A discord mass ban tool that can be used by a user or bot token to completely wi
 ![](https://media.discordapp.net/attachments/631162287968747550/831325322817306664/unknown.png)
 
 # Information
-The script is very buggy and not finished but still gets the job done. Will be updating further on in the future. If you need any support, pm my <a href="https://discord.com/users/630087545312509963">discord</a> or <a href="https://t.me/lxw28032460188">telegram</a>
+The script is very buggy and not finished but still gets the job done. Will be updating further on in the future. If you need any support, pm my <a href="https://discord.com/users/630087545312509963">discord</a> or <a href="https://t.me/lxw14274">telegram</a>
 
 ---
 ###### This project here has been made for educational purposes only. I do not control the misconduct of my tool. I do not promote the usage of my tool.
