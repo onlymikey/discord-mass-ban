@@ -67,7 +67,7 @@ async def main():
 
     ''')
 
-    option = input("[?] Mass ban? [y/n]: ")
+    option = input(" [?] Mass ban? [y/n]: ")
     if option == 'y':
         await menuban()
         await guild()
@@ -104,7 +104,7 @@ async def guild():
         await main()
 
 def check():
-    os.system('cls & mode 70, 12 & title discord mass ban │ by lozza (github.com/9xw)')
+    os.system('cls & mode 70, 12 & title discord mass ban │ by lozza (github.com/qro)')
     try:
         client.run(token, bot=False)
     except:

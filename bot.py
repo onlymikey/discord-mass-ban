@@ -104,7 +104,7 @@ async def guild():
         await main()
 
 def check():
-    os.system('cls & mode 70, 12 & title discord mass ban │ by lozza (github.com/9xw)')
+    os.system('cls & mode 70, 12 & title discord mass ban │ by lozza (github.com/qro)')
     try:
         client.run(token)
     except:
