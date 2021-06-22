@@ -1,11 +1,4 @@
-import os
-import sys
-import time
-import requests
-import json
-import discord
-import asyncio
-import threading
+import os, sys, time, requests, json, discord, asyncio, threading
 from discord.ext import commands
 
 with open('config.json') as f:
@@ -14,11 +7,9 @@ token = config.get('bottoken')
 
 intents = discord.Intents.all()
 intents.members = True
-
 headers = {'Authorization': f'Bot {token}'}
 client = commands.Bot(command_prefix="l", case_insensitive=False, intents=intents)
 client.remove_command("help")
-
 i = 0
 membercount = 0
 
