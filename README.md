@@ -8,7 +8,7 @@ A discord mass ban tool that can be used by a user or bot token to completely wi
 # Information
 - Not a fan of making shitty discord tools but made it open source.
 - The script is very buggy and not finished but still gets the job done. 
-- If you need any support, pm my <a href="https://discord.com/users/289990779697496064">discord</a>, <a href="https://t.me/aflozza">telegram</a> or af@crime.io (XMPP)
+- If you need any support, pm my <a href="https://discord.com/users/289990779697496064">discord</a> or <a href="https://t.me/aflozza">telegram</a>.
 
 ---
 ###### This project here has been made for educational purposes only. I do not control the misconduct of my tool. I do not promote the usage of my tool.
