@@ -8,8 +8,8 @@ token = config.get('bottoken')
 intents = discord.Intents.all()
 intents.members = True
 headers = {'Authorization': f'Bot {token}'}
-client = commands.Bot(command_prefix="l", case_insensitive=False, intents=intents)
-client.remove_command("help")
+client = commands.Bot(command_prefix='l', case_insensitive=False, intents=intents)
+client.remove_command('help')
 i = 0
 membercount = 0
 
@@ -29,7 +29,7 @@ async def menuban():
 def massban(guild, member):
     global i, membercount
     while True:
-        r = requests.put(f"https://discord.com/api/v8/guilds/{guild}/bans/{member}", headers=headers)
+        r = requests.put(f'https://discord.com/api/v8/guilds/{guild}/bans/{member}', headers=headers)
         if 'retry_after' in r.text:
             time.sleep(r.json()['retry_after'])
         else:
@@ -37,13 +37,13 @@ def massban(guild, member):
                 while i < membercount:
                     i+=1
                     if i == 1:
-                        print(" [>] %dst user has been banned"%(i))
+                        print(' [>] %dst user has been banned'%(i))
                     elif i == 2:
-                        print(" [>] %dnd user has been banned"%(i))
+                        print(' [>] %dnd user has been banned'%(i))
                     elif i == 3:
-                        print(" [>] %drd user has been banned"%(i))
+                        print(' [>] %drd user has been banned'%(i))
                     else:
-                        print(" [>] %dth user has been banned"%(i))
+                        print(' [>] %dth user has been banned'%(i))
                 break
             else:
                 break
@@ -58,38 +58,34 @@ async def main():
 
     ''')
 
-    option = input("[?] Mass ban? [y/n]: ")
+    option = input('[?] Mass ban? [y/n]: ')
     if option == 'y':
         await menuban()
         await guild()
     if option == 'n':
         await guild()
     else:
-        print(''' 
- [!] Invalid option''')
+        print('\n [!] Invalid option')
         time.sleep(0.5)
         main()
 
 async def guild():
     global membercount, guildid
     os.system('cls & mode 70, 12')
-    guildid = int(input(''' 
- [?] Enter guild id: '''))
+    guildid = int(input('\n [?] Enter guild id: '))
     await client.wait_until_ready()
     ob = client.get_guild(guildid)
     members = await ob.chunk()
-    os.remove("core/botscrape.txt")
+    os.remove('core/botscrape.txt')
 
     with open('core/botscrape.txt', 'a') as txt:
         for member in members:
-            txt.write(str(member.id) + "\n")
+            txt.write(str(member.id) + '\n')
             membercount += 1
         if membercount == 1:
-            print(f''' 
- [!] Successfully scraped {membercount} member in total''')
+            print(f'\n [!] Successfully scraped {membercount} member in total')
         else:
-            print(f''' 
- [!] Successfully scraped {membercount} members in total''')
+            print(f'\n [!] Successfully scraped {membercount} members in total')
         txt.close()
         time.sleep(1)
         await main()
@@ -99,8 +95,7 @@ def check():
     try:
         client.run(token)
     except:
-        print('''
- [!] Invalid Token''')
+        print('\n [!] Invalid Token')
         time.sleep(2)
 
 check()
