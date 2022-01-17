@@ -1,5 +1,10 @@
-import os, sys, time, requests, json, discord, asyncio, threading
-from discord.ext import commands
+import os, sys, time, requests, json, asyncio, threading
+
+try:
+    import discord
+    from discord.ext import commands
+except (ModuleNotFoundError):
+    os.system('pip install discord')
 
 with open('config.json') as f:
     config = json.load(f)
