@@ -6,7 +6,7 @@ with open('config.json') as f:
 
 token, guild = config['Bot']['token'], config['Bot']['guild']
 intents, intents.members, headers = discord.Intents.all(), True, {'Authorization': f'Bot {token}'}
-client = commands.Bot(command_prefix='l', case_insensitive=False, intents=intents)
+client = commands.Bot(command_prefix='q', case_insensitive=False, intents=intents)
 client.remove_command('help')
 i, membercount= 0, 0
 
@@ -31,8 +31,13 @@ class ban():
                 txt.write(str(member.id) + '\n')
             txt.close()
             await ban().thread()
-            
-
+    
+    async def thread():
+        txt = open('core/botscrape.txt')
+        for member in txt:
+            threading.Thread(target=mass, args=(guild, member,)).start()
+        txt.close()
+        
 if __name__ == '__main__':
     try:
         os.system('cls & mode 70, 12 & title mass ban │ by lozza (github.com/qro')
