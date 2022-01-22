@@ -1,6 +1,7 @@
 import os, sys, requests, json, discord, asyncio, threading 
+from discord.ext import commands
 
-with open('config,json') as f:
+with open('config.json') as f:
     config = json.load(f)
 
 token, guild = config.get('bottoken'), config.get('botguilid')
@@ -9,14 +10,24 @@ client = commands.Bot(command_prefix='l', case_insensitive=False, intents=intent
 client.remove_command('help')
 i, membercount= 0, 0
 
+@client.event
+async def on_ready():
+    await ban().main()
+
 class ban():
     def __init__(self):
         self.token = token
         self.guild = guild
 
-if __name__ == '__name__':
+    def main(self):
+        input("working ")
+
+if __name__ == '__main__':
     try:
+        os.system('cls & mode 70, 12 & title mass ban │ by lozza (github.com/qro')
         import discord
-        from discord.ext import commands
+        client.run(token)
     except ImportError:
         os.system('python -m pip install discord')
+    except:
+        input('\n [!] Invalid Token\n')
