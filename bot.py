@@ -42,13 +42,9 @@ def massban(guild, member):
                 while i < membercount:
                     i+=1
                     if i == 1:
-                        print(' [>] %dst user has been banned'%(i))
-                    elif i == 2:
-                        print(' [>] %dnd user has been banned'%(i))
-                    elif i == 3:
-                        print(' [>] %drd user has been banned'%(i))
+                        print(' [>] %d user has been banned'%(i))
                     else:
-                        print(' [>] %dth user has been banned'%(i))
+                        print(' [>] %d users has been banned'%(i))
                 break
             else:
                 break
