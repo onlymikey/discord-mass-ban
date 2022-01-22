@@ -1,4 +1,7 @@
 {
     "usertoken": "token-here",
-    "bottoken": "token-here"
+    "userguild": "guild-here",
+
+    "bottoken": "token-here",
+    "botguild": "guild-here"
 }
