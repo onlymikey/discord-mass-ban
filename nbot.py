@@ -19,4 +19,4 @@ if __name__ == '__name__':
         import discord
         from discord.ext import commands
     except ImportError:
-        os.system('python - m pip install discord')
+        os.system('python -m pip install discord')
