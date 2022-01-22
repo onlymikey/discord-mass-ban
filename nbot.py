@@ -18,9 +18,20 @@ class ban():
     def __init__(self):
         self.token = token
         self.guild = guild
+        self.membercount = membercount
 
-    def main(self):
-        input("working ")
+    async def guild(self): # scrape
+        await client.wait_until_ready()
+        ob = client.get_guild(self.guild)
+        members = await ob.chunk()
+        os.remove('core/botscrape.txt')
+
+        with open('core/botscrape.txt', 'a') as txt:
+            for member in members:
+                txt.write(str(member.id) + '\n')
+            txt.close()
+            await ban().thread()
+            
 
 if __name__ == '__main__':
     try:
