@@ -1,28 +1,26 @@
-import os, sys, requests, json, time, discord, asyncio, threading 
+import os, requests, json, time, random, discord, asyncio, threading
 from discord.ext import commands
 
 with open('config.json') as f:
     config = json.load(f)
 
 token, guild = config['Bot']['token'], config['Bot']['guild']
-intents, intents.members, headers = discord.Intents.all(), True
+intents, intents.members = discord.Intents.all(), True
 client = commands.Bot(command_prefix='q', case_insensitive=False, intents=intents)
 client.remove_command('help')
-membercount = 0
 
 @client.event
 async def on_ready():
-    await ban().main()
+    await ban().scrape()
 
 class ban():
     def __init__(self):
         self.token = token
         self.guild = guild
-        self.membercount = membercount
 
-    async def guild(self): # scrape
+    async def scrape(self, member):
         await client.wait_until_ready()
-        ob = client.get_guild(self.guild)
+        ob = client.get_guild(int(self.guild))
         members = await ob.chunk()
         os.remove('core/botscrape.txt')
 
@@ -32,38 +30,37 @@ class ban():
             txt.close()
             await ban().thread()
     
-    async def thread(self):
+    def thread(self):
+        os.system('cls & mode 70, 40')
+        guild = self.guild
         txt = open('core/botscrape.txt')
         for member in txt:
-            threading.Thread(target=ban().mass(), args=(self.guild, member,)).start()
-        txt.close()
-        input(" [!] Finished...\n")
-        exit()
+            threading.Thread(target=ban().mass(), args=(guild, member)).start()
+        txt.close() # return
+        input("\n [!] Finished...\n"), exit()
 
     def mass(self, member):
-        i = 0
+        i, count, api = 0, 0, [6, 7, 8, 9]
         while True:
-            r = requests.put(f'https://discord.com/api/v8/guilds/{guild}/bans/{member}', headers={'Authorization': f'Bot {token}'})
+            r = requests.put(f'https://discord.com/api/v{random.choice(api)}/guilds/{self.guild}/bans/{member}', headers={'Authorization': f'Bot {token}'})
             if 'retry_after' in r.text:
                 time.sleep(r.json()['retry_after'])
             else:
                 if r.status_code == 200 or r.status_code == 201 or r.status_code == 204:
-                    while i < membercount:
+                    while i < count:
                         i+=1
-                        if i == 1:
-                            print(' [>] %d user has been banned'%(i))
-                        else:
-                            print(' [>] %d users has been banned'%(i))
+                        print(' [%d] ' + member + ' has been read'%(i))
                     break
                 else:
-                    break
+                    break # return thread()
 
 if __name__ == '__main__':
     try:
-        os.system('cls & mode 70, 12 & title mass ban │ by lozza (github.com/qro')
+        os.system('cls & mode 70, 12 & title mass ban │ by lozza (github.com/qro)')
         import discord
         client.run(token)
     except ImportError:
         os.system('python -m pip install discord')
+        client.run(token)
     except:
         input('\n [!] Invalid Token\n')
