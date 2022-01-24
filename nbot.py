@@ -18,7 +18,7 @@ class ban():
         self.token = token
         self.guild = guild
 
-    async def scrape(self, member):
+    async def scrape(self):
         await client.wait_until_ready()
         ob = client.get_guild(int(self.guild))
         members = await ob.chunk()
@@ -30,16 +30,15 @@ class ban():
             txt.close()
             await ban().thread()
     
-    def thread(self):
+    async def thread(self):
         os.system('cls & mode 70, 40')
-        guild = self.guild
         txt = open('core/botscrape.txt')
         for member in txt:
-            threading.Thread(target=ban().mass(), args=(guild, member)).start()
+            threading.Thread(target=self.mass, args=(self.guild, member,)).start() #error
         txt.close() # return
-        input("\n [!] Finished...\n"), exit()
+        input("\n [!] Finished...\n")
 
-    def mass(self, member):
+    async def mass(self, member):
         i, count, api = 0, 0, [6, 7, 8, 9]
         while True:
             r = requests.put(f'https://discord.com/api/v{random.choice(api)}/guilds/{self.guild}/bans/{member}', headers={'Authorization': f'Bot {token}'})
