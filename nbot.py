@@ -48,7 +48,6 @@ class ban():
 if __name__ == '__main__':
     try:
         os.system('cls & mode 70, 12 & title mass ban │ by lozza (github.com/qro)')
-        import discord
         client.run(token)
     except ImportError:
         os.system('python -m pip install discord')
