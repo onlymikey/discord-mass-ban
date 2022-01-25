@@ -1,4 +1,11 @@
 {
-    "usertoken": "token-here",
-    "bottoken": "token-here"
+    "User": {
+        "token": "token-here",
+        "guild": "guild-here"
+    },
+
+    "Bot": {
+        "token": "toke-here",
+        "guild": "guild-here"
+    }
 }

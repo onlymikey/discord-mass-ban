@@ -1,111 +1,54 @@
-import os, sys, time, requests, json, asyncio, threading
-
-try:
-    import discord
-    from discord.ext import commands
-except (ModuleNotFoundError):
-    os.system('pip install discord')
+import os, requests, time, json, random, discord, threading
+from discord.ext import commands
 
 with open('config.json') as f:
     config = json.load(f)
-token = config.get('usertoken')
 
-intents = discord.Intents.all()
-intents.members = True
-headers = {'Authorization': f'{token}'}
-client = commands.Bot(command_prefix="l", case_insensitive=False, self_bot=True, intents=intents)
-client.remove_command("help")
-i = 0
-membercount = 0
+token, guild = config['User']['token'], config['User']['guild']
+intents, intents.members = discord.Intents.all(), True
+client = commands.Bot(command_prefix="q", case_insensitive=False, self_bot=True, intents=intents)
+client.remove_command('help')
 
 @client.event
 async def on_ready():
-    await guild()
+    await ban().scrape()
 
-async def menuban():
-    os.system('cls & mode 70, 40')
-    guild = guildid
-    txt = open('core/userscrape.txt')
-    for member in txt:
-        threading.Thread(target=massban, args=(guild, member,)).start()
-    txt.close()
-    time.sleep(4)
+class ban():
+    def __init__(self):
+        self.token = token
+        self.guild = guild
 
-def massban(guild, member):
-    global i, membercount
-    while True:
-        r = requests.put(f"https://discord.com/api/v8/guilds/{guild}/bans/{member}", headers=headers)
-        if 'retry_after' in r.text:
-            time.sleep(r.json()['retry_after'])
-        else:
-            if r.status_code == 200 or r.status_code == 201 or r.status_code == 204:
-                while i < membercount:
-                    i+=1
-                    if i == 1:
-                        print(" [>] %dst user has been banned"%(i))
-                    elif i == 2:
-                        print(" [>] %dnd user has been banned"%(i))
-                    elif i == 3:
-                        print(" [>] %drd user has been banned"%(i))
-                    else:
-                        print(" [>] %dth user has been banned"%(i))
-                break
-            else:
-                break
+    async def scrape(self):
+        await client.wait_until_ready()
+        ob = client.get_guild(int(self.guild))
+        members = await ob.chunk()
+        os.remove('Core/userscrape.txt')
 
-async def main():
-    if len(sys.argv) < 2:
-        os.system('cls & mode 70, 12')
-        sys.stdout.write(f'''
+        with open('Core/userscrape.txt', 'a') as txt:
+            for member in members:
+                txt.write(str(member.id) + '\n')
+            txt.close()
+            await ban().thread()
     
-    [!] Connected as: {client.user} (USER)
-    [!] Guild: {guildid}
+    async def thread(self):
+        print('\n [>] Banning...\n')
+        txt = open('Core/userscrape.txt')
+        for member in txt:
+            threading.Thread(target=ban.mass, args=(self.guild, member,)).start()
+        txt.close() # return
 
-    ''')
+    def mass(self, member):
+        try:
+            requests.put(f'https://discord.com/api/v{random.choice([6, 7, 8, 9])}/guilds/{guild}/bans/{member}', headers={'Authorization': f'{token}'}), time.sleep(0.1)
+        except:
+            pass
 
-    option = input(" [?] Mass ban? [y/n]: ")
-    if option == 'y':
-        await menuban()
-        await guild()
-    if option == 'n':
-        await guild()
-    else:
-        print(''' 
- [!] Invalid option''')
-        time.sleep(0.5)
-        main()
-
-async def guild():
-    global membercount, guildid
-    os.system('cls & mode 70, 12')
-    guildid = int(input(''' 
- [?] Enter guild id: '''))
-    await client.wait_until_ready()
-    ob = client.get_guild(guildid)
-    members = await ob.chunk()
-    os.remove("core/userscrape.txt")
-
-    with open('core/userscrape.txt', 'a') as txt:
-        for member in members:
-            txt.write(str(member.id) + "\n")
-            membercount += 1
-        if membercount == 1:
-            print(f''' 
- [!] Successfully scraped {membercount} member in total''')
-        else:
-            print(f''' 
- [!] Successfully scraped {membercount} members in total''')
-        txt.close()
-        time.sleep(1)
-        await main()
-
-def check():
-    os.system('cls & mode 70, 12 & title discord mass ban │ by lozza (github.com/qro)')
+if __name__ == '__main__':
     try:
+        os.system('cls & mode 70, 12 & title mass ban │ by lozza (github.com/qro)')
+        client.run(token, bot=False)
+    except ImportError:
+        os.system('python -m pip install discord')
         client.run(token, bot=False)
     except:
-        print('''
- [!] Invalid Token''')
-        time.sleep(2)
-
-check()
+        input('\n [!] Invalid Token\n')

@@ -1,15 +1,52 @@
-![](https://img.shields.io/github/watchers/qro/mass-ban?style=social) ![](https://img.shields.io/github/stars/qro/mass-ban?style=social) ![](https://img.shields.io/github/forks/qro/mass-ban?style=social)
+<p align="center">
+	<a href="https://www.python.org/">
+    	<img src="https://img.shields.io/badge/python-3.10.2+-3776AB">
+     </a>
+     <a href="https://github.com/qro/mass-ban/blob/master/LICENSE">
+    	<img src="https://img.shields.io/badge/License-MIT-3776AB">
+     </a>
+</p>
 
-# Discord mass ban
-A discord mass ban tool that can be used by a user or bot token to completely wipe out a server with the required permissions.
+<h1 align="center">
+	<img src="https://www.svgrepo.com/show/353655/discord-icon.svg" width="150px"><br>
+    🔨 Mass Ban - a Discord ban tool.
+</h1>
+<p align="center">
+    Use a user or bot token to completely wipe out a server with ban permissions.
+ </p>
 
-![](https://media.discordapp.net/attachments/631162287968747550/852357083004141598/unknown.png)
+## 🛠️ Installation
+[Python](https://www.python.org/downloads/) must be installed on your computer; please get the most recent version. Before running the scripts, ensure that you have all of the required feilds in `config.json` filled in.
 
-# Information
-- Not a fan of making shitty discord tools but made it open source.
-- The script is very buggy and not finished but still gets the job done. 
-- If you need any support, pm my <a href="https://t.me/afqro">telegram</a>.
+### Windows 🪟
+If you're running Windows, you can [download](https://codeload.github.com/qro/mass-ban/zip/refs/heads/master) the .zip file directly from GitHub. In this case, you can still use [Git](https://github.com/git-for-windows/git/releases) to clone my repository. 
 
----
-###### This project here has been made for educational purposes only. I do not control the misconduct of my tool. I do not promote the usage of my tool.
----
+Extract the Zip file and then open your command prompt in the same directory
+```
+$ py user.py
+```
+Or
+```
+$ py bot.py
+```
+
+### Linux 🐧
+If you're running Linux, clone my repository into your own directory by using this command
+```
+$ sudo apt install git
+$ git clone https://github.com/qro/mass-ban.git
+$ cd mass-ban
+```
+From there,
+```
+$ python3 user.py
+```
+Or
+```
+$ python3 bot.py
+```
+
+## ℹ️ Information
+- Cleaned up a lot of the code from v1, should be a little more understandable to anyone that wants to contribute!
+- Made the user experience a lot more easier for a newbie to operate, simply enter the token and the guild id in the configuration, then run either of the files from there.
+- If you need any support, pm my [telegram](https://t.me/afqro).
