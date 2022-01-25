@@ -22,9 +22,9 @@ class ban():
         await client.wait_until_ready()
         ob = client.get_guild(int(self.guild))
         members = await ob.chunk()
-        os.remove('core/botscrape.txt')
+        os.remove('Core/botscrape.txt')
 
-        with open('core/botscrape.txt', 'a') as txt:
+        with open('Core/botscrape.txt', 'a') as txt:
             for member in members:
                 txt.write(str(member.id) + '\n')
             txt.close()
@@ -32,7 +32,7 @@ class ban():
     
     async def thread(self):
         print('\n [>] Banning...\n')
-        txt = open('core/botscrape.txt')
+        txt = open('Core/botscrape.txt')
         for member in txt:
             threading.Thread(target=ban.mass, args=(self.guild, member,)).start()
         txt.close() # return
