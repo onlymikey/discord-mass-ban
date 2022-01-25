@@ -31,7 +31,6 @@ class ban():
             await ban().thread()
     
     async def thread(self):
-        os.system('cls & mode 70, 40')
         print('\n [>] Banning...\n')
         txt = open('core/botscrape.txt')
         for member in txt:
@@ -40,10 +39,9 @@ class ban():
 
     def mass(self, member):
         try:
-            requests.put(f'https://discord.com/api/v{random.choice([6, 7, 8, 9])}/guilds/{guild}/bans/{member}', headers={'Authorization': f'Bot {token}'}), time.sleep(0.100)
+            requests.put(f'https://discord.com/api/v{random.choice([6, 7, 8, 9])}/guilds/{guild}/bans/{member}', headers={'Authorization': f'Bot {token}'}), time.sleep(0.1)
         except:
             pass
-        print(' [>] ID read: ' + member)
 
 if __name__ == '__main__':
     try:
