@@ -50,3 +50,7 @@ $ python3 bot.py
 - Cleaned up a lot of the code from v1, should be a little more understandable to anyone that wants to contribute!
 - Made the user experience a lot more easier for a newbie to operate, simply enter the token and the guild id in the configuration, then run either of the files from there.
 - If you need any support, pm my [telegram](https://t.me/afqro).
+
+---
+###### This project here has been made for educational purposes only. I do not control the misconduct of my tool. I do not promote the usage of my tool.
+---

@@ -5,7 +5,7 @@
     },
 
     "Bot": {
-        "token": "toke-here",
+        "token": "token-here",
         "guild": "guild-here"
     }
 }
