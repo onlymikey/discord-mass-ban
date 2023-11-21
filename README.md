@@ -12,7 +12,7 @@
     🔨 Mass Ban - a Discord ban tool.
 </h1>
 <p align="center">
-    Use a user or bot token to completely wipe out a server with ban permissions.
+    Use a bot or user token to completely wipe out a server with ban permissions.
  </p>
 
 ## 🛠️ Installation
