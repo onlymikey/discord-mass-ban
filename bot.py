@@ -35,6 +35,7 @@ class ban():
             await self.thread()
     
     async def thread(self):
+        print("Bot conectado como:", client.user)
         print('\n [>] Banning...\n')
         with open('Core/botscrape.txt') as txt:
             for member in txt:
