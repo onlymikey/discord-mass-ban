@@ -47,9 +47,6 @@ $ python3 bot.py
 ```
 
 ## ℹ️ Information
-- This project is now archived, and no further updates will be provided. It has served its purpose, and I am no longer actively maintaining it. Feel free to fork the project if you find it useful.
-- If you need any support, send me an email at qro.gh@pm.me or send me a pm my [telegram](https://t.me/ro32pTQHAs).
-
 ---
 ###### This project here has been made for educational purposes only. I do not control the misconduct of my tool. I do not promote the usage of my tool.
 ---
