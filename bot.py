@@ -1,11 +1,15 @@
-import os, requests, time, json, random, discord, threading
+import os, requests, time, json, random, discord, asyncio
 from discord.ext import commands
 
 with open('config.json') as f:
     config = json.load(f)
 
 token, guild = config['Bot']['token'], config['Bot']['guild']
-intents, intents.members = discord.Intents.all(), True
+
+intents = discord.Intents.default()
+intents.members = True
+intents.presences = True
+
 client = commands.Bot(command_prefix='q', case_insensitive=False, intents=intents)
 client.remove_command('help')
 
@@ -28,27 +32,39 @@ class ban():
             for member in members:
                 txt.write(str(member.id) + '\n')
             txt.close()
-            await ban().thread()
+            await self.thread()
     
     async def thread(self):
         print('\n [>] Banning...\n')
-        txt = open('Core/botscrape.txt')
-        for member in txt:
-            threading.Thread(target=ban.mass, args=(self.guild, member,)).start()
-        txt.close() # return
-
-    def mass(self, member):
+        with open('Core/botscrape.txt') as txt:
+            for member in txt:
+                member_id = member.strip()
+                await self.mass(member_id)
+    
+    async def mass(self, member):
         try:
-            requests.put(f'https://discord.com/api/v{random.choice([6, 7, 8, 9])}/guilds/{guild}/bans/{member}', headers={'Authorization': f'Bot {token}'}), time.sleep(0.1)
-        except:
-            pass
+            response = requests.put(
+                f'https://discord.com/api/v{random.choice([6, 7, 8, 9])}/guilds/{self.guild}/bans/{member}',
+                headers={'Authorization': f'Bot {self.token}'}
+            )
+            if response.status_code == 429:  # Rate limit hit
+                retry_after = response.json().get('retry_after', 1)
+                print(f"Rate limit hit, retrying after {retry_after} seconds")
+                await asyncio.sleep(retry_after)
+            else:
+                await asyncio.sleep(1)  # Cooldown de 1 segundo entre cada baneo
+        except Exception as e:
+            print(f"Error al banear al miembro {member}: {e}")
 
 if __name__ == '__main__':
     try:
+        print("Iniciando el bot...")  # Verificar que el bloque if __name__ == '__main__' se ejecuta
         os.system('cls')
         client.run(token)
     except ImportError:
+        print("ImportError: Instalando discord.py")  # Verificar si hay un problema de importación
         os.system('python -m pip install discord')
         client.run(token)
-    except:
+    except Exception as e:
+        print(f"Error: {e}")  # Imprimir cualquier otra excepción
         input('\n [!] Invalid Token\n')
